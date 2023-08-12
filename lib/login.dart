@@ -45,35 +45,35 @@ class _loginState extends State<login> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Builder(builder: (context) {
-                                      return Expanded(
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: SizedBox(
-                                              height:
-                                                  constraints.maxHeight * 0.25,
-                                              width:
-                                                  constraints.maxWidth * 0.16,
-                                              child: Image.asset(
-                                                'wallet.jpg',
-                                                fit: BoxFit.fill,
-                                              )),
-                                        ),
-                                      );
-                                    }),
-                                    Expanded(
-                                      child: SizedBox(
-                                          height: constraints.maxHeight * 0.2,
-                                          child:  Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Image.asset('name.jpg'),
-                                          )), 
-                                    ),
-                                  ]),
+                              // Row(
+                              //     mainAxisAlignment:
+                              //         MainAxisAlignment.spaceEvenly,
+                              //     children: [
+                              //       Builder(builder: (context) {
+                              //         return Expanded(
+                              //           child: Align(
+                              //             alignment: Alignment.centerRight,
+                              //             child: SizedBox(
+                              //                 height:
+                              //                     constraints.maxHeight * 0.25,
+                              //                 width:
+                              //                     constraints.maxWidth * 0.16,
+                              //                 child: Image.asset(
+                              //                   'wallet.jpg',
+                              //                   fit: BoxFit.fill,
+                              //                 )),
+                              //           ),
+                              //         );
+                              //       }),
+                              //       Expanded(
+                              //         child: SizedBox(
+                              //             height: constraints.maxHeight * 0.2,
+                              //             child:  Align(
+                              //               alignment: Alignment.centerLeft,
+                              //               child: Image.asset('name.jpg'),
+                              //             )), 
+                              //       ),
+                              //     ]),
                               widgets().myTextFormField(
                                   Icons.account_box,
                                   'email',

@@ -4,6 +4,7 @@ import 'package:mymoney/mymethods.dart';
 import 'package:mymoney/mystyles.dart';
 import 'package:mymoney/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:rive/rive.dart' as rive;
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -106,14 +107,23 @@ class _homeState extends State<home> {
                 opacity: 1,
                 child: SizedBox(
                     width: constrains.maxWidth * 0.4,
-                    height: constrains.maxHeight * 0.45)),
+                    height: constrains.maxHeight * 0.45,
+                    child: const rive.RiveAnimation.asset('assets/worldmap.riv'))),
           ),
           Container(
               margin: EdgeInsets.all(constrains.maxWidth * 0.01),
               width: constrains.maxWidth * 0.99,
               height: constrains.maxHeight * 0.5,
-              decoration:
-                  const BoxDecoration(color: Color.fromARGB(250, 29, 0, 37))),
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: const LinearGradient(colors: [
+                    Color.fromARGB(250, 29, 0, 37),
+                    Color.fromARGB(160, 55, 6, 70)
+                  ], stops: [
+                    0.68,
+                    0.9
+                  ], begin: Alignment.topLeft, end: Alignment.bottomRight))),
           Opacity(
               opacity: 0.05,
               child: Container(

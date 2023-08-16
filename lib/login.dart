@@ -3,6 +3,7 @@ import 'package:mymoney/mystyles.dart';
 import 'package:mymoney/widgets.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
+import 'package:rive/rive.dart';
 import 'mymethods.dart';
 import 'myroutes.dart';
 
@@ -24,6 +25,10 @@ class _loginState extends State<login> {
             color: Colors.white,
             width: constraints.maxWidth,
             height: constraints.maxHeight,
+            child: const RiveAnimation.asset(
+              'assets/rupee.riv',
+              fit: BoxFit.fill,
+            ),
           ),
           Opacity(
               opacity: 0.04,
@@ -45,35 +50,36 @@ class _loginState extends State<login> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              // Row(
-                              //     mainAxisAlignment:
-                              //         MainAxisAlignment.spaceEvenly,
-                              //     children: [
-                              //       Builder(builder: (context) {
-                              //         return Expanded(
-                              //           child: Align(
-                              //             alignment: Alignment.centerRight,
-                              //             child: SizedBox(
-                              //                 height:
-                              //                     constraints.maxHeight * 0.25,
-                              //                 width:
-                              //                     constraints.maxWidth * 0.16,
-                              //                 child: Image.asset(
-                              //                   'wallet.jpg',
-                              //                   fit: BoxFit.fill,
-                              //                 )),
-                              //           ),
-                              //         );
-                              //       }),
-                              //       Expanded(
-                              //         child: SizedBox(
-                              //             height: constraints.maxHeight * 0.2,
-                              //             child:  Align(
-                              //               alignment: Alignment.centerLeft,
-                              //               child: Image.asset('name.jpg'),
-                              //             )), 
-                              //       ),
-                              //     ]),
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Builder(builder: (context) {
+                                      return Expanded(
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: SizedBox(
+                                              height:
+                                                  constraints.maxHeight * 0.25,
+                                              width:
+                                                  constraints.maxWidth * 0.16,
+                                              child: Image.asset(
+                                                'assets/wallet.jpg',
+                                                fit: BoxFit.fill,
+                                              )),
+                                        ),
+                                      );
+                                    }),
+                                    Expanded(
+                                      child: SizedBox(
+                                          height: constraints.maxHeight * 0.2,
+                                          child: const Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: RiveAnimation.asset(
+                                                'assets/login.riv'),
+                                          )),
+                                    ),
+                                  ]),
                               widgets().myTextFormField(
                                   Icons.account_box,
                                   'email',
@@ -129,8 +135,8 @@ class _loginState extends State<login> {
                                   })),
                               InkWell(
                                   onTap: () {
-                                    methods()
-                                        .navigateTO(c: context,routeName: myroutes.signin);
+                                    methods().navigateTO(
+                                        c: context, routeName: myroutes.signin);
                                   },
                                   child: Text("Create an Account",
                                       style: mystyles.fonts().copyWith(

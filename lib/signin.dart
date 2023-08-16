@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:mymoney/mystyles.dart';
 import 'package:mymoney/widgets.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
+import 'package:rive/rive.dart';
 import 'mymethods.dart';
 
 class signin extends StatefulWidget {
@@ -23,6 +25,10 @@ class _signinState extends State<signin> {
             color: Colors.white,
             width: constraints.maxWidth,
             height: constraints.maxHeight,
+            child: const RiveAnimation.asset(
+              'assets/rupee.riv',
+              fit: BoxFit.fill,
+            ),
           ),
           Opacity(
               opacity: 0.04,
@@ -44,35 +50,36 @@ class _signinState extends State<signin> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              // Row(
-                              //     mainAxisAlignment:
-                              //         MainAxisAlignment.spaceEvenly,
-                              //     children: [
-                              //       Builder(builder: (context) {
-                              //         return Expanded(
-                              //           child: Align(
-                              //             alignment: Alignment.centerRight,
-                              //             child: SizedBox(
-                              //                 height:
-                              //                     constraints.maxHeight * 0.25,
-                              //                 width:
-                              //                     constraints.maxWidth * 0.16,
-                              //                 child: Image.asset(
-                              //                   'wallet.jpg',
-                              //                   fit: BoxFit.fill,
-                              //                 )),
-                              //           ),
-                              //         );
-                              //       }),
-                              //       Expanded(
-                              //         child: SizedBox(
-                              //             height: constraints.maxHeight * 0.2,
-                              //             child:  Align(
-                              //               alignment: Alignment.centerLeft,
-                              //               child: Image.asset('name.jpg'),
-                              //             )),
-                              //       ),
-                              //     ]),
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Builder(builder: (context) {
+                                      return Expanded(
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: SizedBox(
+                                              height:
+                                                  constraints.maxHeight * 0.25,
+                                              width:
+                                                  constraints.maxWidth * 0.16,
+                                              child: Image.asset(
+                                                'assets/wallet.jpg',
+                                                fit: BoxFit.fill,
+                                              )),
+                                        ),
+                                      );
+                                    }),
+                                    Expanded(
+                                      child: SizedBox(
+                                          height: constraints.maxHeight * 0.2,
+                                          child: const Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: RiveAnimation.asset(
+                                                'assets/login.riv'),
+                                          )),
+                                    ),
+                                  ]),
                               widgets().myTextFormField(
                                   Icons.account_box,
                                   'email',

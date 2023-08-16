@@ -4,7 +4,7 @@ import 'package:mymoney/home.dart';
 import 'package:mymoney/login.dart';
 import 'package:mymoney/myroutes.dart';
 import 'package:mymoney/signin.dart';
-import 'package:mymoney/splashscreen.dart';
+import 'package:mymoney/splashscreen.dart'; 
 
 import 'firebase_options.dart';
 

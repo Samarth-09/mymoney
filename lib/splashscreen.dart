@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mymoney/Myroutes.dart';
+import 'package:mymoney/myroutes.dart';
 import 'package:mymoney/main.dart';
 import 'package:mymoney/mymethods.dart';
 import 'package:rive/rive.dart';
 
 class splashscreen extends StatefulWidget {
+  static var constrains;
   const splashscreen({super.key});
 
   @override
@@ -20,7 +21,13 @@ class _splashScreenstate extends State<splashscreen> {
 
   void fun() async {
     await Future.delayed(const Duration(seconds: 1, milliseconds: 500));
-    methods().navigateTO(c: context, routeName: myroutes.login);
+    if(MyApp.isLaptop)
+    {
+      methods().navigateTO(c: context, routeName: myroutes.login);
+    }
+    else{
+      methods().navigateTO(c: context, routeName: myroutes.mlogin);
+    }
   }
 
   var mwidth, mheight;
@@ -28,6 +35,7 @@ class _splashScreenstate extends State<splashscreen> {
   Widget build(BuildContext context) {
     mwidth = MediaQuery.of(context).size.width;
     mheight = MediaQuery.of(context).size.height;
+    print('$mwidth  $mheight');
     return Scaffold(
         body: SafeArea(
       top: false,
@@ -36,8 +44,10 @@ class _splashScreenstate extends State<splashscreen> {
       right: false,
       minimum: const EdgeInsets.all(0), //1024×600 2732×2048
       child: LayoutBuilder(builder: ((context, constraints) {
-        if (constraints.maxHeight > 600 || constraints.maxWidth > 1200) {
+        splashscreen.constrains = constraints;
+        if (constraints.maxWidth > 1200) {
           MyApp.isLaptop = true;
+          MyApp.isMobile = false;
           return Stack(children: [
             Container(
                 color: Colors.white,
@@ -52,7 +62,22 @@ class _splashScreenstate extends State<splashscreen> {
                     child: const RiveAnimation.asset('assets/logo.riv'))),
           ]);
         } else {
-          return const Text("ipad");
+          MyApp.isMobile = true;
+          MyApp.isLaptop = false;
+          print(1);
+          return Stack(children: [
+            Container(
+                color: Colors.white,
+                width: constraints.maxWidth,
+                height: constraints.maxHeight),
+            Positioned(
+                top: mheight * 0.2,
+                left: mwidth * 0.05,
+                child: SizedBox(
+                    height: mheight * 0.45,
+                    width: mwidth * 0.9,
+                    child: const RiveAnimation.asset('assets/logo.riv'))),
+          ]);
         }
       })),
       //   ,

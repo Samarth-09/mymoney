@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mymoney/home.dart';
 import 'package:mymoney/login.dart';
+import 'package:mymoney/mhome.dart';
 import 'package:mymoney/myroutes.dart';
 import 'package:mymoney/signin.dart';
 import 'package:mymoney/splashscreen.dart'; 
-
+import 'mlogin.dart';
+import 'msignin.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -29,7 +31,10 @@ class MyApp extends StatelessWidget {
           myroutes.login: (context) => const login(),
           myroutes.splashscreen: (context) => const splashscreen(),
           myroutes.signin :(context) => const signin(),
-          myroutes.home:(context) => const home()
+          myroutes.home:(context) => const home(),
+          myroutes.mhome:(context) => const mhome(),
+          myroutes.mlogin:(context) => const mlogin(),
+          myroutes.msignin:(context) => const msignin()
         });
   }
 

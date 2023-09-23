@@ -11,11 +11,11 @@ class user {
   setTotalmoneyspent(totalmoneyspent) => this.totalmoneyspent = totalmoneyspent;
   setSpentmoney(spentmoney) => this.spentmoney.addAll(spentmoney);
   setLasttrans(lasttrans) => this.lasttrans.addAll(lasttrans);
-  getUsername() {
+  String getUsername() {
     return username;
   }
 
-  getPassword() {
+  String getPassword() {
     return password;
   }
 
@@ -23,11 +23,11 @@ class user {
     return spentmoney;
   }
 
-  getTotalbalance() {
+  int getTotalbalance() {
     return totalbalance;
   }
 
-  getTotalmoneyspent() {
+  int getTotalmoneyspent() {
     return totalmoneyspent;
   }
 

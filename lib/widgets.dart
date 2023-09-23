@@ -73,10 +73,10 @@ class widgets extends ChangeNotifier {
   Widget myIcon(IconData icon, double iconsize, Color? iconcolor,
       {Function? submit}) {
     return InkWell(
-        onTap: () {
+        onTap: () async {
           if (submit == null) {
           } else {
-            submit();
+            await submit();
           }
         },
         onHover: (value) {
@@ -213,7 +213,7 @@ class widgets extends ChangeNotifier {
                       child: SizedBox(
                           width: width * 0.3,
                           height: height * 0.3,
-                          child: Image.asset('graph.jpg', fit: BoxFit.fill)))
+                          child: Image.asset('assets/graph.jpg', fit: BoxFit.fill)))
                 ]))));
   }
 }

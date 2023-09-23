@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mymoney/mystyles.dart';
+import 'package:mymoney/splashscreen.dart';
 import 'package:mymoney/widgets.dart';
 import 'package:provider/provider.dart';
-import 'main.dart';
 import 'package:rive/rive.dart';
 import 'mymethods.dart';
 import 'myroutes.dart';
@@ -17,10 +17,11 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      if (MyApp.isLaptop) {
-        return Stack(children: [
+    
+    BoxConstraints constraints = splashscreen.constrains;
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(children: [
           Container(
             color: Colors.white,
             width: constraints.maxWidth,
@@ -90,37 +91,6 @@ class _loginState extends State<login> {
                                   'password',
                                   constraints.maxHeight * 0.03,
                                   mystyles.c1),
-                              // Row(
-                              //     mainAxisAlignment:
-                              //         MainAxisAlignment.spaceEvenly,
-                              //     mainAxisSize: MainAxisSize.max,
-                              //     children: [
-                              //       Expanded(
-                              //           child: Divider(
-                              //               color: mystyles.c1,
-                              //               height: 1,
-                              //               thickness: 1,
-                              //               endIndent: 5,
-                              //               indent: 30)),
-                              //       Text(
-                              //           'Enter Only when to Update or a new User',
-                              //           style: mystyles.fonts().copyWith(
-                              //               color: mystyles.c1,
-                              //               fontSize:
-                              //                   constraints.maxHeight * 0.025)),
-                              //       Expanded(
-                              //           child: Divider(
-                              //               color: mystyles.c1,
-                              //               height: 1,
-                              //               thickness: 1,
-                              //               indent: 5,
-                              //               endIndent: 30))
-                              //     ]),
-                              // widgets().myTextFormField(
-                              //     Icons.password_outlined,
-                              //     'Total Balance',
-                              //     constraints.maxHeight * 0.03,
-                              //     mystyles.c1),
                               ChangeNotifierProvider<widgets>(
                                   create: (context) => widgets(),
                                   child: Consumer<widgets>(
@@ -145,10 +115,6 @@ class _loginState extends State<login> {
                                               constraints.maxHeight * 0.025)))
                             ])))),
           ),
-        ]);
-      } else {
-        return Container();
-      }
-    }));
+        ]));
   }
 }

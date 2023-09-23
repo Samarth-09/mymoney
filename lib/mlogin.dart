@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:mymoney/mystyles.dart';
 import 'package:mymoney/widgets.dart';
 import 'package:provider/provider.dart';
-import 'main.dart';
 import 'package:rive/rive.dart';
 import 'mymethods.dart';
+import 'myroutes.dart';
 
-class signin extends StatefulWidget {
-  const signin({super.key});
+import 'package:mymoney/splashscreen.dart';
+
+class mlogin extends StatefulWidget {
+  const mlogin({super.key});
 
   @override
-  State<signin> createState() => _signinState();
+  State<mlogin> createState() => _mloginState();
 }
 
-class _signinState extends State<signin> {
+class _mloginState extends State<mlogin> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      if (MyApp.isLaptop) {
-        return Stack(children: [
+    var constraints = splashscreen.constrains;
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(children: [
           Container(
             color: Colors.white,
             width: constraints.maxWidth,
@@ -37,15 +39,15 @@ class _signinState extends State<signin> {
                 height: constraints.maxHeight,
               )),
           Positioned(
-            top: constraints.maxHeight * 0.1,
-            left: constraints.maxWidth * 0.25,
+            top: constraints.maxHeight * 0.2,
+            left: constraints.maxWidth * 0.05,
             child: Card(
                 elevation: 20,
                 child: Padding(
                     padding: const EdgeInsets.only(left: 7, right: 7),
                     child: SizedBox(
-                        width: constraints.maxWidth * 0.5,
-                        height: constraints.maxHeight * 0.8,
+                        width: constraints.maxWidth * 0.85,
+                        height: constraints.maxHeight * 0.6,
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -59,9 +61,8 @@ class _signinState extends State<signin> {
                                           alignment: Alignment.centerRight,
                                           child: SizedBox(
                                               height:
-                                                  constraints.maxHeight * 0.25,
-                                              width:
-                                                  constraints.maxWidth * 0.16,
+                                                  constraints.maxHeight * 0.16,
+                                              width: constraints.maxWidth * 0.3,
                                               child: Image.asset(
                                                 'assets/wallet.jpg',
                                                 fit: BoxFit.fill,
@@ -71,7 +72,7 @@ class _signinState extends State<signin> {
                                     }),
                                     Expanded(
                                       child: SizedBox(
-                                          height: constraints.maxHeight * 0.2,
+                                          height: constraints.maxWidth * 0.5,
                                           child: const Align(
                                             alignment: Alignment.centerLeft,
                                             child: RiveAnimation.asset(
@@ -82,36 +83,37 @@ class _signinState extends State<signin> {
                               widgets().myTextFormField(
                                   Icons.account_box,
                                   'email',
-                                  constraints.maxHeight * 0.03,
+                                  constraints.maxWidth * 0.05,
                                   mystyles.c1),
                               widgets().myTextFormField(
                                   Icons.password_outlined,
                                   'password',
-                                  constraints.maxHeight * 0.03,
-                                  mystyles.c1),
-                              widgets().myTextFormField(
-                                  Icons.password_outlined,
-                                  'Total Balance',
-                                  constraints.maxHeight * 0.03,
+                                  constraints.maxWidth * 0.05,
                                   mystyles.c1),
                               ChangeNotifierProvider<widgets>(
                                   create: (context) => widgets(),
                                   child: Consumer<widgets>(
                                       builder: (context, value, child) {
                                     return value.myButton(
-                                        'Sign in',
-                                        constraints.maxHeight * 0.04,
-                                        constraints.maxWidth * 0.08,
-                                        constraints.maxHeight * 0.08,
+                                        'log in',
+                                        constraints.maxWidth * 0.06,
+                                        constraints.maxWidth * 0.4,
+                                        constraints.maxHeight * 0.06,
                                         mystyles.c1,
-                                        methods().register);
+                                        methods().log_in);
                                   })),
+                              InkWell(
+                                  onTap: () {
+                                    methods().navigateTO(
+                                        c: context, routeName: myroutes.msignin);
+                                  },
+                                  child: Text("Create an Account",
+                                      style: mystyles.fonts().copyWith(
+                                          color: mystyles.c1,
+                                          fontSize:
+                                              constraints.maxWidth * 0.05)))
                             ])))),
           ),
-        ]);
-      } else {
-        return Container();
-      }
-    }));
+        ]));
   }
 }

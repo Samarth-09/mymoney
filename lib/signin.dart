@@ -16,6 +16,7 @@ class signin extends StatefulWidget {
 class _signinState extends State<signin> {
   @override
   Widget build(BuildContext context) {
+    widgets.logingIn = false;
     return Scaffold(body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       if (MyApp.isLaptop) {
@@ -41,72 +42,76 @@ class _signinState extends State<signin> {
             left: constraints.maxWidth * 0.25,
             child: Card(
                 elevation: 20,
-                child: Padding(
+                child: Container(
+                    color: Colors.white,
                     padding: const EdgeInsets.only(left: 7, right: 7),
-                    child: SizedBox(
-                        width: constraints.maxWidth * 0.5,
-                        height: constraints.maxHeight * 0.8,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Builder(builder: (context) {
-                                      return Expanded(
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: SizedBox(
-                                              height:
-                                                  constraints.maxHeight * 0.25,
-                                              width:
-                                                  constraints.maxWidth * 0.16,
-                                              child: Image.asset(
-                                                'assets/wallet.jpg',
-                                                fit: BoxFit.fill,
-                                              )),
-                                        ),
-                                      );
-                                    }),
-                                    Expanded(
+                    width: constraints.maxWidth * 0.5,
+                    height: constraints.maxHeight * 0.8,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Builder(builder: (context) {
+                                  return Expanded(
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
                                       child: SizedBox(
-                                          height: constraints.maxHeight * 0.2,
-                                          child: const Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: RiveAnimation.asset(
-                                                'assets/login.riv'),
+                                          height: constraints.maxHeight * 0.25,
+                                          width: constraints.maxWidth * 0.16,
+                                          child: Image.asset(
+                                            'assets/wallet.jpg',
+                                            fit: BoxFit.fill,
                                           )),
                                     ),
-                                  ]),
-                              widgets().myTextFormField(
-                                  Icons.account_box,
-                                  'email',
-                                  constraints.maxHeight * 0.03,
-                                  mystyles.c1),
-                              widgets().myTextFormField(
-                                  Icons.password_outlined,
-                                  'password',
-                                  constraints.maxHeight * 0.03,
-                                  mystyles.c1),
-                              widgets().myTextFormField(
-                                  Icons.password_outlined,
-                                  'Total Balance',
-                                  constraints.maxHeight * 0.03,
-                                  mystyles.c1),
-                              ChangeNotifierProvider<widgets>(
-                                  create: (context) => widgets(),
-                                  child: Consumer<widgets>(
-                                      builder: (context, value, child) {
-                                    return value.myButton(
-                                        'Sign in',
-                                        constraints.maxHeight * 0.04,
-                                        constraints.maxWidth * 0.08,
-                                        constraints.maxHeight * 0.08,
-                                        mystyles.c1,
-                                        methods().register);
-                                  })),
-                            ])))),
+                                  );
+                                }),
+                                Expanded(
+                                  child: SizedBox(
+                                      height: constraints.maxHeight * 0.2,
+                                      child: const Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: RiveAnimation.asset(
+                                            'assets/login.riv'),
+                                      )),
+                                ),
+                              ]),
+                          widgets().myTextFormField(Icons.account_box, 'email',
+                              constraints.maxHeight * 0.03, mystyles.c1),
+                          widgets().myTextFormField(
+                              Icons.password_outlined,
+                              'password',
+                              constraints.maxHeight * 0.03,
+                              mystyles.c1),
+                          widgets().myTextFormField(
+                              Icons.password_outlined,
+                              'Total Balance',
+                              constraints.maxHeight * 0.03,
+                              mystyles.c1),
+                          ChangeNotifierProvider<widgets>(
+                              create: (context) => widgets(),
+                              child: Consumer<widgets>(
+                                  builder: (context, value, child) {
+                                if (widgets.logingIn) {
+                                  return Container(
+                                    padding: EdgeInsets.all(10),
+                                    color: mystyles.c1,
+                                    width: constraints.maxWidth * 0.06,
+                                    height: constraints.maxHeight * 0.05,
+                                    child: const CircularProgressIndicator(
+                                        color: Colors.white),
+                                  );
+                                }
+                                return value.myButton(
+                                    'Sign in',
+                                    constraints.maxHeight * 0.04,
+                                    constraints.maxWidth * 0.08,
+                                    constraints.maxHeight * 0.08,
+                                    mystyles.c1,
+                                    methods().register);
+                              })),
+                        ]))),
           ),
         ]);
       } else {

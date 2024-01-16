@@ -16,6 +16,7 @@ class msignin extends StatefulWidget {
 class _msigninState extends State<msignin> {
   @override
   Widget build(BuildContext context) {
+    widgets.logingIn = false;
     var constraints = splashscreen.constrains;
     return Scaffold(
         body: Stack(children: [
@@ -40,66 +41,73 @@ class _msigninState extends State<msignin> {
         left: constraints.maxWidth * 0.05,
         child: Card(
             elevation: 20,
-            child: Padding(
+            child: Container(
+                color: Colors.white,
                 padding: const EdgeInsets.only(left: 7, right: 7),
-                child: SizedBox(
-                    width: constraints.maxWidth * 0.85,
-                    height: constraints.maxHeight * 0.75,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Builder(builder: (context) {
-                                  return Expanded(
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: SizedBox(
-                                          height: constraints.maxHeight * 0.16,
-                                          width: constraints.maxWidth * 0.3,
-                                          child: Image.asset(
-                                            'assets/wallet.jpg',
-                                            fit: BoxFit.fill,
-                                          )),
-                                    ),
-                                  );
-                                }),
-                                Expanded(
+                width: constraints.maxWidth * 0.85,
+                height: constraints.maxHeight * 0.75,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Builder(builder: (context) {
+                              return Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
                                   child: SizedBox(
-                                      height: constraints.maxWidth * 0.5,
-                                      child: const Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: RiveAnimation.asset(
-                                            'assets/login.riv'),
+                                      height: constraints.maxHeight * 0.16,
+                                      width: constraints.maxWidth * 0.3,
+                                      child: Image.asset(
+                                        'assets/wallet.jpg',
+                                        fit: BoxFit.fill,
                                       )),
                                 ),
-                              ]),
-                          widgets().myTextFormField(Icons.account_box, 'email',
-                              constraints.maxWidth * 0.05, mystyles.c1),
-                          widgets().myTextFormField(
-                              Icons.password_outlined,
-                              'password',
-                              constraints.maxWidth * 0.05,
-                              mystyles.c1),
-                          widgets().myTextFormField(
-                              Icons.password_outlined,
-                              'Total Balance',
-                              constraints.maxWidth * 0.05,
-                              mystyles.c1),
-                          ChangeNotifierProvider<widgets>(
-                              create: (context) => widgets(),
-                              child: Consumer<widgets>(
-                                  builder: (context, value, child) {
-                                return value.myButton(
-                                    'Sign in',
-                                    constraints.maxWidth * 0.06,
-                                    constraints.maxWidth * 0.4,
-                                    constraints.maxHeight * 0.06,
-                                    mystyles.c1,
-                                    methods().register);
-                              })),
-                        ])))),
+                              );
+                            }),
+                            Expanded(
+                              child: SizedBox(
+                                  height: constraints.maxWidth * 0.5,
+                                  child: const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child:
+                                        RiveAnimation.asset('assets/login.riv'),
+                                  )),
+                            ),
+                          ]),
+                      widgets().myTextFormField(Icons.account_box, 'email',
+                          constraints.maxWidth * 0.05, mystyles.c1),
+                      widgets().myTextFormField(Icons.password_outlined,
+                          'password', constraints.maxWidth * 0.05, mystyles.c1),
+                      widgets().myTextFormField(
+                          Icons.password_outlined,
+                          'Total Balance',
+                          constraints.maxWidth * 0.05,
+                          mystyles.c1),
+                      ChangeNotifierProvider<widgets>(
+                          create: (context) => widgets(),
+                          child: Consumer<widgets>(
+                              builder: (context, value, child) {
+                            if (widgets.logingIn) {
+                              return Container(
+                                padding: EdgeInsets.all(10),
+                                color: mystyles.c1,
+                                width: constraints.maxWidth * 0.06,
+                                height: constraints.maxHeight * 0.05,
+                                child: const CircularProgressIndicator(
+                                    color: Colors.white),
+                              );
+                            }
+                            return value.myButton(
+                                'Sign in',
+                                constraints.maxWidth * 0.06,
+                                constraints.maxWidth * 0.4,
+                                constraints.maxHeight * 0.06,
+                                mystyles.c1,
+                                methods().register);
+                          })),
+                    ]))),
       ),
     ]));
   }

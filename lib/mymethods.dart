@@ -106,6 +106,7 @@ class methods {
           email: u.getUsername(), password: u.getPassword());
       await writeData();
     } on FirebaseAuthException catch (e) {
+      widgets.logingIn = false;
       print(e);
     }
   }
@@ -161,7 +162,7 @@ class methods {
             content: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  widgets().myTextFormField(Icons.list_alt_outlined, 'Source',
+                  widgets().myTextFormField(Icons.list_alt_outlined, 'item',
                       height * 0.03, mystyles.c1),
                   widgets().myTextFormField(
                       Icons.money, 'cost', height * 0.03, mystyles.c1),
@@ -214,7 +215,7 @@ class methods {
             content: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  widgets().myTextFormField(Icons.list_alt_outlined, 'Source',
+                  widgets().myTextFormField(Icons.list_alt_outlined, 'item',
                       width * 0.05, mystyles.c1),
                   widgets().myTextFormField(
                       Icons.money, 'cost', width * 0.05, mystyles.c1),

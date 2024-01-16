@@ -17,6 +17,7 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
+    widgets.logingIn = false;
     BoxConstraints constraints = splashscreen.constrains;
     return Scaffold(
         resizeToAvoidBottomInset: false,

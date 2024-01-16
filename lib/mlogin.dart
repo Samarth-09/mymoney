@@ -18,6 +18,7 @@ class mlogin extends StatefulWidget {
 class _mloginState extends State<mlogin> {
   @override
   Widget build(BuildContext context) {
+    widgets.logingIn = false;
     var constraints = splashscreen.constrains;
     return Scaffold(
         resizeToAvoidBottomInset: false,

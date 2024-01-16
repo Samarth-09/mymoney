@@ -7,6 +7,8 @@ class widgets extends ChangeNotifier {
   double elevation = 10;
   //user u = user();
 
+  static bool logingIn = false;
+
   void getElevation(value)
   {
     if(value)
@@ -20,14 +22,14 @@ class widgets extends ChangeNotifier {
   }
 
   Widget myTransactions( double x, double s) {
-    // print(value.lt.toString()+'in');
-    // print(value.lt!.keys.elementAt(0));
-    return SizedBox(
+    return Container(
+      color: Colors.white,
       height: s,
       child: ListView.builder(
         itemCount: methods.u.getLasttrans().length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
+            color: Colors.white,
             margin: const EdgeInsets.only(top: 7, bottom: 7, left: 5, right: 5),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -95,7 +97,12 @@ class widgets extends ChangeNotifier {
   Widget myButton(String data, double textsize, double width, double height,
       Color bgcolor, Function submit) {
     return InkWell(
-      onTap: () async => await submit(),
+      onTap: () async {
+        logingIn = true;
+        notifyListeners();
+        await submit();
+        notifyListeners();
+      },
       onHover: (value) {
         if (value) {
           elevation = 20;

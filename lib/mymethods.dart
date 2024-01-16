@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mymoney/main.dart';
-import 'package:mymoney/mhome.dart';
 import 'package:mymoney/user_model.dart';
 import 'myroutes.dart';
 import 'mystyles.dart';
@@ -118,11 +117,12 @@ class methods {
           email: u.getUsername(), password: u.getPassword());
       await readData();
     } on FirebaseAuthException catch (e) {
+      widgets.logingIn = false;
       print(e);
     }
   }
 
-  static var  width, height;
+  static var width, height;
   static BuildContext? c;
   Future<void> spentDialog() {
     print(1);
@@ -131,8 +131,7 @@ class methods {
         builder: (c) {
           return AlertDialog(
             title: Text('SpentMoney Info',
-                style: mystyles.fonts().copyWith(fontSize: height * 0.15)
-                ),
+                style: mystyles.fonts().copyWith(fontSize: height * 0.15)),
             content: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -162,7 +161,7 @@ class methods {
             content: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  widgets().myTextFormField(Icons.list_alt_outlined, 'item',
+                  widgets().myTextFormField(Icons.list_alt_outlined, 'Source',
                       height * 0.03, mystyles.c1),
                   widgets().myTextFormField(
                       Icons.money, 'cost', height * 0.03, mystyles.c1),
@@ -177,6 +176,7 @@ class methods {
           );
         });
   }
+
   static State? o;
   Future<void> mspentDialog() {
     return showDialog(
@@ -214,13 +214,13 @@ class methods {
             content: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  widgets().myTextFormField(Icons.list_alt_outlined, 'item',
+                  widgets().myTextFormField(Icons.list_alt_outlined, 'Source',
                       width * 0.05, mystyles.c1),
                   widgets().myTextFormField(
                       Icons.money, 'cost', width * 0.05, mystyles.c1),
                   widgets().myButton('submit', width * 0.07, width * 0.4,
                       height * 0.055, mystyles.c1, () {
-                      methods().updateReceivedmoney();
+                    methods().updateReceivedmoney();
                     o!.setState(() {
                       Navigator.pop(context);
                     });

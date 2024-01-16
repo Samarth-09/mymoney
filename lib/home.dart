@@ -185,7 +185,8 @@ class _homeState extends State<home> {
                   child: Card(
                     color: Colors.white,
                     elevation: value.elevation,
-                    child: SizedBox(
+                    child: Container(
+                      color: Colors.white,
                       width: constrains.maxWidth * 0.5,
                       height: constrains.maxHeight * 0.32,
                       child: SingleChildScrollView(
@@ -262,86 +263,95 @@ class _homeState extends State<home> {
                   onHover: (val) {
                     value.getElevation(val);
                   },
-                  child: SizedBox(
+                  child: Container(
+                    color: Colors.white,
                     width: constrains.maxWidth * 0.3,
                     height: constrains.maxHeight * 0.32,
                     child: Card(
+                        color: Colors.white,
                         elevation: value.elevation,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ListTile(
-                                  title: Text("Spent On",
-                                      style: mystyles.fonts().copyWith(
-                                          color: mystyles.c1,
-                                          fontSize: constrains.maxHeight * 0.04,
-                                          fontWeight: FontWeight.bold)),
-                                  trailing: const Icon(
-                                      Icons.stop_circle_outlined,
-                                      color: Colors.red)),
-                              Row(children: [
+                        child: Container(
+                          color: Colors.white,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ListTile(
+                                    title: Text("Spent On",
+                                        style: mystyles.fonts().copyWith(
+                                            color: mystyles.c1,
+                                            fontSize:
+                                                constrains.maxHeight * 0.04,
+                                            fontWeight: FontWeight.bold)),
+                                    trailing: const Icon(
+                                        Icons.stop_circle_outlined,
+                                        color: Colors.red)),
+                                Row(children: [
+                                  Expanded(
+                                    child: Divider(
+                                        color: mystyles.c1.withAlpha(150)),
+                                  ),
+                                ]),
                                 Expanded(
-                                  child: Divider(
-                                      color: mystyles.c1.withAlpha(150)),
-                                ),
-                              ]),
-                              Expanded(
-                                child: SizedBox(
-                                  child: ListView.builder(
-                                    itemCount: methods.u.getSpentmoney().length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Container(
-                                        margin: const EdgeInsets.only(
-                                            top: 7,
-                                            bottom: 7,
-                                            left: 5,
-                                            right: 5),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Expanded(
-                                                  child: Text(
-                                                      methods.u
-                                                          .getSpentmoney()
-                                                          .keys
-                                                          .elementAt(index),
-                                                      textAlign: TextAlign.left,
-                                                      style: mystyles
-                                                          .fonts()
-                                                          .copyWith(
-                                                              color:
-                                                                  mystyles.c1,
-                                                              fontSize: constrains
-                                                                      .maxHeight *
-                                                                  0.0265))),
-                                              Expanded(
-                                                  child: Text(
-                                                      methods.u
-                                                          .getSpentmoney()[methods
-                                                              .u
-                                                              .getSpentmoney()
-                                                              .keys
-                                                              .elementAt(index)]
-                                                          .toString(),
-                                                      textAlign:
-                                                          TextAlign.right,
-                                                      style: mystyles
-                                                          .fonts()
-                                                          .copyWith(
-                                                              color:
-                                                                  mystyles.c1,
-                                                              fontSize: constrains
-                                                                      .maxHeight *
-                                                                  0.0265)))
-                                            ]),
-                                      );
-                                    },
+                                  child: SizedBox(
+                                    child: ListView.builder(
+                                      itemCount:
+                                          methods.u.getSpentmoney().length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Container(
+                                          margin: const EdgeInsets.only(
+                                              top: 7,
+                                              bottom: 7,
+                                              left: 5,
+                                              right: 5),
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Expanded(
+                                                    child: Text(
+                                                        methods.u
+                                                            .getSpentmoney()
+                                                            .keys
+                                                            .elementAt(index),
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: mystyles
+                                                            .fonts()
+                                                            .copyWith(
+                                                                color:
+                                                                    mystyles.c1,
+                                                                fontSize: constrains
+                                                                        .maxHeight *
+                                                                    0.0265))),
+                                                Expanded(
+                                                    child: Text(
+                                                        methods.u
+                                                            .getSpentmoney()[methods
+                                                                .u
+                                                                .getSpentmoney()
+                                                                .keys
+                                                                .elementAt(
+                                                                    index)]
+                                                            .toString(),
+                                                        textAlign:
+                                                            TextAlign.right,
+                                                        style: mystyles
+                                                            .fonts()
+                                                            .copyWith(
+                                                                color:
+                                                                    mystyles.c1,
+                                                                fontSize: constrains
+                                                                        .maxHeight *
+                                                                    0.0265)))
+                                              ]),
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ])),
+                              ]),
+                        )),
                   ),
                 );
               }))),
